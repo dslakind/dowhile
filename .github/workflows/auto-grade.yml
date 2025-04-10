@@ -1,0 +1,44 @@
+name: Auto-Grade Workflow
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on push to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger on pull request to the main branch
+
+jobs:
+  check_commits:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check Commit History
+        run: |
+          git log --oneline -n 5  # Check last 5 commits for frequent commits
+          # Optional: Add more custom checks for commit messages, number of commits, etc.
+
+  lint_code:
+    runs-on: ubuntu-latest
+    needs: check_commits  # Ensure commit check passes first
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'  # Set the JDK version you want to use
+
+      - name: Install Checkstyle
+        run: |
+          curl -LO https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.45/checkstyle-8.45-all.jar
+          mv checkstyle-8.45-all.jar checkstyle.jar
+
+      - name: Run Checkstyle (for Java code style)
+        run: |
+          java -jar checkstyle.jar -c /google_checks.xml src/**/*.java
