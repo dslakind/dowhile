@@ -41,8 +41,21 @@
 
 ## 🗺️ Visual Workflow
 
-Edit your code | git status | git add . | git commit -m "message" | (Optional) git pull | git push | Check GitHub repository!
-
+```
+Edit your code
+   |
+git status
+   |
+git add .
+   |
+git commit -m "message"
+   |
+(Optional) git pull
+   |
+git push
+   |
+Check GitHub repository!
+```
 
 ---
 
