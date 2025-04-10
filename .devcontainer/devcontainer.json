@@ -1,26 +1,17 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/java
 {
-	"name": "Java",
+	"name": "Java 17",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/java:1-17-bullseye",
+	"image": "mcr.microsoft.com/devcontainers/java:17",
 
-	"features": {
-		"ghcr.io/devcontainers/features/java:1": {
-			"version": "none",
-			"installMaven": "false",
-			"installGradle": "false"
-		}
-	},
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"vscjava.vscode-java-pack",
-				"vscjava.vscode-java-debug",
-				"formulahendry.code-runner",
-				"redhat.java",
-				"VisualStudioExptTeam.vscodeintellicode",
-				"VisualStudioExptTeam.intellicode-api-usage-examples"
+				"vscjava.vscode-java-pack"
+			],
+			"settings": [
+				"terminal.integrated.shell.linux", "/bin/bash"
 			]
 		}
 	}
